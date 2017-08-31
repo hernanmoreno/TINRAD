@@ -11,7 +11,8 @@ This is the readme file for the TINGEOFIX and TINRAD R scripts that
 produce Triangular Irregular Networks (TIN), analyze its topographic 
 properties and estimate the total incident radiation accounting for 
 direct, diffuse, atmospheric backscattered and albedo-reflected 
-components. 
+components. The repository also contains demo data for the Green River basin
+ready to run TINGEOFIX.
 
 TINGEOFIX: If you are starting from scratch and have set of X,Y,Z 
 coordinates in a txt file it is perfect for running the TINGEOFIX script.
