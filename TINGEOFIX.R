@@ -60,9 +60,10 @@ if (makeplots==1){
   dev.off()
 }
 
+Y <- delaunay(X) 
+
 ## generate tiles
 if (makeplots==1){
-  Y <- delaunay(X) 
   pdf(file=paste(WD,"3_Delaunay.pdf",sep=""))
   plot(Y,lwd=0.2)
   dev.off()
