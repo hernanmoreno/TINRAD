@@ -16,7 +16,7 @@ library(moments)
 options(digits=16)
 
 ################ INPUT MODULE #####################################################################################################################################################
-WD         = "/media/D/Work/Software/Scripts/OU/SOLAR_RADIATION_COMPLETE/Data/"  # set working directory
+WD         = "./"           # set working directory
 divisoria  = "catchments"   # Watershed divide shapefile to clip triangulation
 vertices   = "vertices.txt" # textfile with the TIN triangle vertices X,Y,Z (elevation).. Coordinates in projected system in meters
 maxres     = 60             # in length units, largest expected triangle edge within the TIN to find nearest three nodes. Rule of thumb: If TIN was derived from a 30m DEM then use 30m to begin
