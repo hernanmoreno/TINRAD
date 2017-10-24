@@ -12,7 +12,7 @@ library(insol)  # tools to compute declination and hour angle
 options(digits=16)
 
 ################ INPUT MODULE #####################################################################################################################################################
-WD = "/media/D/Work/Software/Scripts/OU/SOLAR_RADIATION_COMPLETE/Data/" # Working directory
+WD = "./" # Working directory
 TINF     <<-"TIN_Centers.txt" # txt file with the points file x,y,z coordinates of the TIN center points from the TINGEOFIX script
 Vert     <<-"Vertices2.txt"   ## txt file with the second list of triangle vertices from the TINGEOFIX script
 clipTIN  <<-"clipTIN.rda"     ## Delaunay file produced with TINGEOFIX script
