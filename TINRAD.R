@@ -154,10 +154,12 @@ for (ti in 1:length(secuencia)){  # for loop for every time step we want to comp
   direm[belowhorizon,ti]=0
  
   Kdif[,ti]=0.05*sconstant*sundis*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti])*ordersky[,4]   
+  Kdif[belowhorizon,ti]=0
   Kbs[,ti]=albedo*(diradarr[,ti]+Kdif[,ti])*(0.05*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti]))*ordersky[,4]  
+  Kbs[belowhorizon,ti]=0
   Kal[,ti]=albedo*(1-ordersky[,4])*mean(diradarr[,ti])
-  finalrad[,ti]=(diradarr[,ti]*(1-direm[,ti])) + Kdif[,ti]  + Kbs[,ti]  + Kal[,ti]  
-
+  finalrad[,ti]=(diradarr[,ti]*(1-direm[,ti])) + Kdif[,ti]  + Kbs[,ti]  + Kal[,ti]
+  }
 if (makeplots==1){
 ########################################################################################################
 # Snapshots of final_rad ##
