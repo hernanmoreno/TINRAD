@@ -34,10 +34,11 @@ following R libraries need to be installed in your R version:
  * colorRamps
  * plotrix
  * moments
+ * insol
  
 You can install them all using the following command:
 
-    install.packages(c('rgeos','sp','maptools','spatstat','fields','colorRamps','plotrix','moments'))
+    install.packages(c('rgeos','sp','maptools','spatstat','fields','colorRamps','plotrix','moments','insol'))
  
 Additionally, you will need to provide a shapefile (i.e. `.dbf`, `.shp`, `.shx`,
 and `.prj`) containing the watershed divide or polygon of interest to constrain
