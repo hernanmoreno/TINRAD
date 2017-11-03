@@ -170,11 +170,31 @@ for (ti in 1:length(secuencia)){  # for loop for every time step we want to comp
   direm[,ti]             = REM
   direm[belowhorizon,ti] = 0
  
-  Kdif[,ti]     = 0.05*sconstant*sundis*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti])*ordersky[,4]   
-  Kbs[,ti]      = albedo*(diradarr[,ti]+Kdif[,ti])*(0.05*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti]))*ordersky[,4]  
-  Kal[,ti]      = albedo*(1-ordersky[,4])*mean(diradarr[,ti])
-  finalrad[,ti] = (diradarr[,ti]*(1-direm[,ti])) + Kdif[,ti]  + Kbs[,ti]  + Kal[,ti]  
+  Kdif[,ti]             = 0.05*sconstant*sundis*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti])*ordersky[,4]   
+  Kdif[belowhorizon,ti] = 0
+  Kbs[,ti]              = albedo*(diradarr[,ti]+Kdif[,ti])*(0.05*Twa[,ti]*Tda[,ti]*(Tws[,ti]*Trs[,ti]*Tds[,ti]))*ordersky[,4]  
+  Kbs[belowhorizon,ti]  = 0
+  Kal[,ti]              = albedo*(1-ordersky[,4])*mean(diradarr[,ti])
+  finalrad[,ti]         = (diradarr[,ti]*(1-direm[,ti])) + Kdif[,ti]  + Kbs[,ti]  + Kal[,ti]
+  }
 
+  if (makeplots==1){
+  ########################################################################################################
+  # Snapshots of final_rad ##
+  for (ri in 1:length(secuencia)){
+    cat("radiation plotting ",ri," of ", length(secuencia), fill=TRUE)
+    pdf(file=paste(WD,"Final_Rad_GMT",secuencia[ri],".pdf",sep=""))
+    testcol<-grey(seq(0,1, len=128))   # grey pallete
+    #testcol = ygobb(256)  # topo.colors, terrain.colors, cm.colors, heat.colors, rainbow, ygobb, matlab.like2, primary.colors, diverge_hsv, cyan2yellow, green2red, blue2red, magenta2green 
+    col.labels<-c(round(min(finalrad), digits=2),round((((max(finalrad)-min(finalrad)))/4)+min(finalrad),digits=2),
+                  round((((max(finalrad)-min(finalrad)))/2)+min(finalrad),digits=2),
+                  round((((max(finalrad)-min(finalrad)))*0.75)+min(finalrad), digits=2),round(max(finalrad), digits=2))
+    plot(clipTIN, lwd=0.05,col=grey((finalrad[,ri]-min(finalrad))/(max(finalrad)-min(finalrad))))
+    #plot(clipTIN, lwd=0.05,col=testcol[c(round(255*(diradarr[,ri]-min(diradarr[,ri]))/(max(diradarr[,ri])-min(diradarr[,ri]))))+1])
+    color.legend(max(centers[,1]+1000),min(centers[,2]),max(centers[,1])+2000,max(centers[,2]), col.labels, testcol, gradient="y", cex=0.6, align="rb")
+    dev.off()
+  }
+}
 
 
 ########################################################################################################
